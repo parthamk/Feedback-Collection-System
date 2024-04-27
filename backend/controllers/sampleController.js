@@ -19,7 +19,7 @@ exports.createSample = async (req, res)=>{
     });
     try {
         const newSample = await sample.save();
-        console.log("Data", newSample);
+        // console.log("Data", newSample);
         res.status(201).json({message: "Data saved", newSample});
     } catch (error) {
         res.status(400).json({message: error.message})

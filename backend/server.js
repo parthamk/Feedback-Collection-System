@@ -10,7 +10,7 @@ app.use(express.json());
 
 //Route
 const sampleRoutes = require("./routes/sampleRoutes");
-app.use("/api", sampleRoutes);
+app.use("/api", sampleRoutes); //http://localhost:5000/api/
 
 // MongoDb connection
 mongoose.connect(process.env.MONGODB_URI)
