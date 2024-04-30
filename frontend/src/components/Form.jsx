@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import axios from "axios";
+import toast, {Toaster} from 'react-hot-toast';
+
 
 const Form = () => {
     const [fromData, setFromData] = useState({
@@ -16,13 +18,29 @@ const Form = () => {
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
+        //To check if the fields are empty
+        if(!fromData.name || !fromData.email || fromData.rating === 0){
+
+            toast.error('All fields are Mandatory');
+            return;
+
+        }
         try {
-            await axios.post("http://localhost:8000/api/submit", fromData);
-            console.log("Axios",fromData);
-            alert("From submitted successfully");
+
+            const response = await axios.post("http://localhost:8000/api/submit", fromData);
+            // console.log(response);
+            // console.log("Axios",fromData);
+            toast.success(response.data.message);
         } catch (error) {
             console.error("Error submitting form:",error);
-            alert("Error while submitting the form");
+            //checking from server if the email already exist
+            if(error.response && error.response.data){
+                toast.error(error.response.data.message);//custom error
+
+            }
+            else{
+                toast.error(error.response.data.message);//server error
+            }
         }
     }
 
@@ -34,15 +52,16 @@ const Form = () => {
 
     return (
         <div className='flex items-center justify-center h-screen bg-gray-200'>
+            <Toaster />
             <form onSubmit={handleSubmit} className='bg-white p-10 rounded-lg shadow-lg'>
                 <h2 className='text-2xl font-bold mb-4'>Feedback Collection</h2>
                 <div className='mb-3'>
                     <label htmlFor="name">Your Name: </label>
-                    <input type="text" name="name" id="name" placeholder='Enter your name' className='border' />
+                    <input type="text" name="name" id="name" placeholder='Enter your name' className='border' onChange={handleChange} />
                 </div>
                 <div className='mb-3'>
                     <label htmlFor="email">Your Email: </label>
-                    <input type="email" name="email" id="email" placeholder='Enter your email' className='border' />
+                    <input type="email" name="email" id="email" placeholder='Enter your email' className='border' onChange={handleChange} />
                 </div>
                 <div className='mb-3'>
                     <h2 className='text-14 font-bold'>Rate your service</h2>

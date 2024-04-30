@@ -7,6 +7,11 @@ exports.submitForm = async (req, res)=>{
 
     try {
         const {name, email, rating, reason} = req.body;
+        //Check email exist
+        const existingForm = await From.findOne({email});
+        if(existingForm){
+            return res.status(400).json({message:"Email already exists"})
+        }
         const newForm = new From({name, email, rating, reason});
         const saveData = await newForm.save();
         res.status(201).json({message:"From Submitted Successfully", saveData});
