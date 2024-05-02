@@ -3,6 +3,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config();
 const fromRoute = require("./routes/formRoute");
+const authRoutes = require("./routes/authRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -18,6 +19,7 @@ mongoose.connect(process.env.MONGODB_URI)
 
 // Route
 app.use('/api', fromRoute); // http://localhost:8000/api/submit
+app.use("/auth", authRoutes); // http://localhost:8000/auth/register or login
 
 // Start server
 app.listen(PORT, ()=>{
