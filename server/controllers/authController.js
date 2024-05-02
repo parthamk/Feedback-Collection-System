@@ -14,7 +14,7 @@ exports.register = async (req, res)=> {
         }
 
         // hash password
-        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);//abcd123
 
         const admin = new Auth({
             name: req.body.name,
