@@ -31,6 +31,14 @@ const Form = () => {
             // console.log(response);
             // console.log("Axios",fromData);
             toast.success(response.data.message);
+
+            setFromData({
+                name: "",
+                email: "",
+                rating: 0,
+                reason: "",
+            });
+
         } catch (error) {
             console.error("Error submitting form:",error);
             //checking from server if the email already exist

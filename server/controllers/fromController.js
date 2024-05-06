@@ -19,5 +19,21 @@ exports.submitForm = async (req, res)=>{
         // console.error("Error Submitting from data",error);
         res.status(500).json({message:'Internal server error'})
     }
+};
 
+exports.getAllForms = async (req, res) => {
+    try {
+        const forms = await From.find();
+        // console.log("From Data", forms);
+        const totalForms = forms.length;
+        
+        // Calculate average rating
+        const totalRatings = forms.reduce((sum, form) => sum + form.rating, 0);
+        const averageRating = totalForms > 0 ? totalRatings / totalForms : 0;
+
+        res.status(200).json({ forms, totalForms, averageRating });
+    } catch (error) {
+        // console.error("Error fetching form data", error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
 };

@@ -52,3 +52,15 @@ exports.login = async (req, res)=> {
         res.status(500).json({message:error.message})
     }
 }
+
+exports.getAllAdmins = async (req, res) => {
+    try {
+        const adminData = await Auth.find();
+        console.log("Admins Data", adminData);
+
+        res.status(200).json({ adminData });
+    } catch (error) {
+        // console.error("Error fetching form data", error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};

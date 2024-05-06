@@ -4,13 +4,13 @@ import {Link} from 'react-router-dom';
 import Home from './Home';
 import Profile from './Profile';
 
-//import { Link } from 'react-router-dom'
-
 const Dashboard = () => {
   const [currentPage,setCurrentPage]=useState("Home");
+
   const handleNavigation=(page)=>{
     setCurrentPage(page)
   }
+  
   return (
     <div className='flex h-screen'>
         <div className='w-1/5 bg-white-100 text-black-200 p-4 h-full flex flex-col justify-between'>
@@ -31,7 +31,6 @@ const Dashboard = () => {
           </div>
 
         </div>
-
 
         <div className='w-4/5 bg-blue-gray-50 bg-blue-100 p-4 h-full'>
           {currentPage === 'Home' && (
