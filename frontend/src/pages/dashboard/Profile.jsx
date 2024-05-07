@@ -31,7 +31,7 @@ const Profile = () => {
           {/* Left section  */}
           <div className="w-1/5 bg-white text-black-200 p-4  flex flex-col justify-between mr-8 ml-8]]]  items-center rounded-md shadow border border-red-500 ">
             <h1 className=" mt-4 font-bold">Admin Profile</h1>
-            <img src="https://w7.pngwing.com/pngs/177/551/png-transparent-user-interface-design-computer-icons-default-stephen-salazar-graphy-user-interface-design-computer-wallpaper-sphere-thumbnail.png" alt="addmin" className="rounded-full h-20 w-20 mt-2 " />
+            <img src="https://w7.pngwing.com/pngs/177/551/png-transparent-user-interface-design-computer-icons-default-stephen-salazar-graphy-user-interface-design-computer-wallpaper-sphere-thumbnail.png" alt="admin" className="rounded-full h-20 w-20 mt-2 " />
             {adminData.map((admin, index) => (
               <p className="mt-1 font-semibold" key={index}>{admin.name !== "" ? admin.name : "Admin Name"} </p> 
             ))}

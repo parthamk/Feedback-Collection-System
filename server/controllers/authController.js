@@ -37,17 +37,16 @@ exports.login = async (req, res)=> {
         if(!admin) {
             return res.status(401).json({message:"Invalid credentials"});
         }
-
+        const adminName = admin.name;
         const passwordMatch = await bcrypt.compare(req.body.password, admin.password);
         if(!passwordMatch) {
             return res.status(401).json({message: "Invalid credentials"});
         }
 
         // generate web token
-        const token = jwt.sign({userId: admin._id}, process.env.JWT_SECRET, {expiresIn: "1h"});
-
-        res.status(200).json({message: "Admin Logged in Successfully", token, admin})
-
+        const token = jwt.sign({userId: admin._id, name: admin.name}, process.env.JWT_SECRET, {expiresIn: "1h"});
+        // console.log("Token from login:", token);
+        res.status(200).json({message: "Admin Logged in Successfully", token, adminName})
     } catch (error) {
         res.status(500).json({message:error.message})
     }

@@ -19,6 +19,7 @@ const Login = () => {
     try {
       const response = await axios.post("http://localhost:8000/auth/login", fromData);
       console.log(response.data);
+      localStorage.setItem("adminName", JSON.stringify(response.data));
       toast.success("Logged in successfully");
       navigate("/dashboard");
     } catch (error) {
