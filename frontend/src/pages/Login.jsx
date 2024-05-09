@@ -23,6 +23,7 @@ const Login = () => {
         fromData
       );
       console.log(response.data);
+      localStorage.setItem("adminName", JSON.stringify(response.data));
       toast.success("Logged in successfully");
       navigate("/dashboard");
     } catch (error) {
@@ -41,11 +42,12 @@ const Login = () => {
                 Welcome!!
               </h1>
               <p className="font-semibold">
-                Not registered yet? <span>
-                <Link to="/register" className="text-blue-600 font-semibold">
-                  Sign up
-                </Link>
-                </span> 
+                Not registered yet?{" "}
+                <span>
+                  <Link to="/register" className="text-blue-600 font-semibold">
+                    Sign up
+                  </Link>
+                </span>
               </p>
             </div>
             <form
@@ -79,7 +81,8 @@ const Login = () => {
               Forgotten your password or your login details?
               <Link to="/register" className="text-blue-600 underline">
                 Get help
-              </Link> signing in
+              </Link>{" "}
+              signing in
             </p>
           </div>
         </div>
