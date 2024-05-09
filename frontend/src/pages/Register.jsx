@@ -1,70 +1,118 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import toast, {Toaster} from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
+import Img from "../assets/signup.png";
 
 const Register = () => {
-    const navigate = useNavigate();
-    const [fromData, setFromData] = useState({
-        name: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-    });
+  const navigate = useNavigate();
+  const [fromData, setFromData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
 
-    const handleChange = (e)=>{
-        setFromData({...fromData, [e.target.name]: e.target.value});
+  const handleChange = (e) => {
+    setFromData({ ...fromData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (fromData.password !== fromData.confirmPassword) {
+      toast.error("Password do not match");
+      return;
     }
 
-    const handleSubmit = async (e)=>{
-        e.preventDefault();
-        if(fromData.password !== fromData.confirmPassword){
-            toast.error("Password do not match");
-            return;
-        }
-
-        try {
-            const response = await axios.post("http://localhost:8000/auth/register", fromData);
-            console.log(response.data);
-            toast.success("Registration successful", {duration: 3000});
-            setTimeout(()=>{
-                navigate("/")
-            },3000)
-        } catch (error) {
-            toast.error(error.response.data.message);
-        }
-
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/auth/register",
+        fromData
+      );
+      console.log(response.data);
+      toast.success("Registration successful", { duration: 3000 });
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
+    } catch (error) {
+      toast.error(error.response.data.message);
     }
-
+  };
 
   return (
-    <div className='flex items-center justify-center bg-gray-100 min-h-screen'>
-        <Toaster />
-        <div className='bg-white p-8 rounded shadow-md w-96'>
-            <h1 className='text-2xl font-semibold text-gray-800 mb-6'>Register</h1>
-            <form className='space-y-4' onSubmit={handleSubmit}>
-              <div>
-                <label htmlFor="name" className='block text-sm font-medium text-gray-600'>Name</label>
-                <input type="name" name="name" id="name" placeholder='Jhon Doe' className='mt-1 w-full outline-none border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-90 block' onChange={handleChange}/>
-              </div>
-              <div>
-                <label htmlFor="email" className='block text-sm font-medium text-gray-600'>Email</label>
-                <input type="email" name="email" id="email" placeholder='jhondoe@example.com' className='mt-1 w-full outline-none border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-90 block' onChange={handleChange}/>
-              </div>
-              <div>
-                <label htmlFor="password" className='block text-sm font-medium text-gray-600'>Password</label>
-                <input type="password" name="password" id="password" placeholder='password' className='mt-1 w-full outline-none border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-90 block' onChange={handleChange}/>
-              </div>
-              <div>
-                <label htmlFor="confirmPassword" className='block text-sm font-medium text-gray-600'>Confirm Password</label>
-                <input type="password" name="confirmPassword" id="confirmPassword" placeholder='Confirm your password' className='mt-1 w-full outline-none border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-90 block' onChange={handleChange}/>
-              </div>
-              <button type="submit" className='w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'>Register</button>
-            </form>
-            <p className='mt-2'>Sign In <Link to="/" className='underline'>Here</Link></p>
+    <div className="flex items-center justify-center bg-gradient-to-b from-blue-400 to-blue-100 min-h-screen">
+      <Toaster />
+      <div className="w-[900px] h-[600px] bg-white rounded-[20px] flex shadow-2xl">
+        <div className="w-[70%] h-[600px] flex justify-center items-center rounded-[10px]">
+          <img
+            className="w-[100%] h-[95%] object-cover rounded-[20px] mix-blend-multiply"
+            src={Img}
+            alt="image"
+          />
         </div>
-    </div>
-  )
-}
 
-export default Register
+        <div className="w-[50%] h-[600px] rounded-[20px] flex justify-center items-center m-4">
+          <div className="w-[90%] h-[80%] flex flex-col justify-center items-center">
+            <div className="w-[100%] h-[85px] flex justify-start items-start flex-col">
+              <h1 className="font-semibold text-[40px] text-blue-600">
+                Get Started
+              </h1>
+              <p className="font-semibold">
+                Already Have an Account?
+                <Link to="/" className="text-blue-600 font-semibold">
+                  Sign in
+                </Link>
+              </p>
+            </div>
+
+            <form
+              className="w-[100%] h-[600px] flex justify-around items-center flex-col"
+              onSubmit={handleSubmit}
+            >
+              <input
+                type="name"
+                name="name"
+                id="name"
+                placeholder="Enter your Name"
+                className="w-[100%] h-[40px] text-start outline-none bg-transparent border-b-2 border-blue-400 shadow-2xl placeholder:text-blue-600 font-semibold"
+                onChange={handleChange}
+              />
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Enter your Email"
+                className="w-[100%] h-[40px] text-start outline-none bg-transparent border-b-2 border-blue-400 shadow-2xl placeholder:text-blue-600 font-semibold"
+                onChange={handleChange}
+              />
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Enter your Password"
+                className="w-[100%] h-[40px] text-start outline-none bg-transparent border-b-2 border-blue-400 shadow-2xl placeholder:text-blue-600 font-semibold"
+                onChange={handleChange}
+              />
+              <input
+                type="password"
+                name="confirmPassword"
+                id="confirmPassword"
+                placeholder="Confirm your Password"
+                className="w-[100%] h-[40px] text-start outline-none bg-transparent border-b-2 border-blue-400 shadow-2xl placeholder:text-blue-600 font-semibold"
+                onChange={handleChange}
+              />
+              <button
+                type="submit"
+                className="w-[70%] h-[40px] bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md shadow-2xl"
+              >
+                Sign Up
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Register;
