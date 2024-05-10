@@ -1,4 +1,5 @@
 import ContactImg from "./images/contact.png"
+import { Link } from "react-router-dom"
 
 
 const Home = () => {
@@ -18,7 +19,9 @@ const Home = () => {
                     <h4 className='text-sm text-gray-600 dark:text-gray-600'>
                     Empowering Voices, Amplifying Impact: Transforming Feedback into Actionable Insights
                     </h4>
-                    <button className="text-white  p-2 rounded-md mt-5 bg-gradient-to-r from-cyan-400 to-orange-600 ">Register</button>
+                    <Link to="/register">
+                      <button className="text-white  p-2 rounded-md mt-5 bg-gradient-to-r from-cyan-400 to-orange-600 ">Register</button>
+                    </Link>
                 </div>
 
                 <div className="hidden lg:block lg:mt-10">
