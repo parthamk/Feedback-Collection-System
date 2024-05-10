@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Dashboard from "./pages/Dashboard/Dashboard.jsx";
+import Dashboard from "./pages/dashboard/Dashboard.jsx";
 import Form from "./components/Form";
 import RequireAuth from "./components/RequireAuth"; // Import the RequireAuth component
 

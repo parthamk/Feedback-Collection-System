@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Home from "../Home";
 import axios from "axios";
 import Profile from "../Profile/Profile";
+import CreateForm from "./CreateForm";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -87,6 +88,17 @@ const Dashboard = () => {
                 Profile
               </a>
             </li>
+            <li className="mt-2">
+              <a
+                href="#"
+                className={`block text-xl text-black w-ful shadow hover:shadow-lg py-2 px-4 ' ${
+                  currentPage === "CreateForm" ? "bg-blue-200" : ""
+                }`}
+                onClick={() => handleNavigation("CreateForm")}
+              >
+                CreateForm
+              </a>
+            </li>
           </ul>
         </div>
         <div className="mt-auto">
@@ -104,6 +116,7 @@ const Dashboard = () => {
       <div className="w-4/5 bg-blue-gray-50 bg-blue-100 p-4 ">
         {currentPage === "Home" && <Home />}
         {currentPage === "Profile" && <Profile adminData={adminData} />}
+        {currentPage === 'CreateForm' && <CreateForm />}
       </div>
     </div>
   );
