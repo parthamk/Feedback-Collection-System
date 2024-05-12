@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import FormCreation from "./createForm/FormCreation";
 
-const FormList = () => {
+const CreateForm = () => {
+  const [isCreating, setIsCreating] = useState(false);
+
   const forms = [
     { name: 'Form 1', date: '2022-01-15' },
     { name: 'Form 2', date: '2022-01-20' },
@@ -9,16 +12,24 @@ const FormList = () => {
     { name: 'Form 5', date: '2022-02-05' },
     { name: 'Form 6', date: '2022-02-10' },
     { name: 'Form 7', date: '2022-02-15' },
-
   ];
+
+  const handleCreateForm = () => {
+    setIsCreating(true);
+  };
 
   return (
     <div className="max-w-4xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-4">Form List</h1>
-      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        Create New Form
-      </button>
-      <ul className="mt-4 overflow-y-auto px-5" style={{ maxHeight: '65vh' }}>
+      {!isCreating && (
+        <button
+          onClick={handleCreateForm}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Create New Form
+        </button>
+      )}
+      <ul className={`mt-4 overflow-y-auto px-5 ${isCreating ? 'hidden' : 'block'}`} style={{ maxHeight: '65vh' }}>
         {forms.map((form, index) => (
           <li key={index} className="bg-white shadow-md rounded-lg p-4 mt-4">
             <div className="flex justify-between items-center">
@@ -33,8 +44,11 @@ const FormList = () => {
           </li>
         ))}
       </ul>
+      {isCreating && (
+        <FormCreation setIsCreating={setIsCreating} />
+      )}
     </div>
   );
 };
 
-export default FormList;
+export default CreateForm;
