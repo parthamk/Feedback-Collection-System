@@ -53,26 +53,26 @@ const About = () => {
                         </div>
                     </div>
     
-                    <div className="container mx-auto px-4 py-8 bg-blue-50">
+                    <div className="container mx-auto px-4 py-8 bg-none">
                         <div className="flex flex-col md:flex-row md:flex-wrap justify-center gap-4 md:gap-20 m-10">
-                            <div className="flex bg-white dark:bg-slate-600 text-white p-4 shadow-lg rounded-full hover:animate-bounce">
-                                <h1 className="text-4xl bg-gray-800 px-5 py-3 font-bold rounded-full">1</h1>
-                                <p className="text-black dark:text-slate-200 p-5 font-bold">Motivation</p>
+                            <div className="flex bg-white light:bg-slate-600 text-black p-4 shadow-lg rounded-full hover:animate-bounce">
+                                <h1 className="text-4xl bg-gray-200 px-5 py-3 font-bold rounded-full">1</h1>
+                                <p className="text-black dark:text-slate-600 p-5 font-bold">Choose Template</p>
                             </div>
-                            <div className="flex bg-white dark:bg-slate-600 text-white p-4 shadow-lg rounded-full hover:animate-bounce">
-                                <h1 className="text-4xl bg-gray-800 px-5 py-3 font-bold rounded-full">2</h1>
-                                <p className="text-black dark:text-slate-200 p-5 font-bold">Inspire</p>
+                            <div className="flex bg-white light:bg-slate-600 text-black p-4 shadow-lg rounded-full hover:animate-bounce">
+                                <h1 className="text-4xl bg-gray-200 px-5 py-3 font-bold rounded-full">2</h1>
+                                <p className="text-black dark:text-slate-600 p-5 font-bold">Create Form</p>
                             </div>
-                            <div className="flex bg-white dark:bg-slate-600 text-white p-4 shadow-lg rounded-full hover:animate-bounce">
-                                <h1 className="text-4xl bg-gray-800 px-5 py-3 font-bold rounded-full">3</h1>
-                                <p className="text-black dark:text-slate-200 p-5 font-bold">Discipline</p>
+                            <div className="flex bg-white light:bg-slate-600 text-black p-4 shadow-lg rounded-full hover:animate-bounce">
+                                <h1 className="text-4xl bg-gray-200 px-5 py-3 font-bold rounded-full">3</h1>
+                                <p className="text-black dark:text-slate-600 p-5 font-bold">Share</p>
                             </div>
-                            <div className="flex bg-white dark:bg-slate-600 text-white p-4 shadow-lg rounded-full hover:animate-bounce">
+                            <div className="flex bg-white light:bg-slate-600 text-white p-4 shadow-lg rounded-full hover:animate-bounce">
                                 <div className="text-4xl bg-gray-800 p-3 font-bold rounded-full">
                                     <img src={Google} alt="Profile 1" className="w-10 h-10 rounded" />
                                 </div>
                                 <div className='flex flex-col leading-none'>
-                                    <span className="text-black dark:text-slate-200 p-2 font-bold">Review on Google</span>
+                                    <span className="text-black light:text-slate-200 p-2 font-bold">Get Feedback</span>
                                     <span className="p-1 text-white">⭐⭐⭐⭐⭐</span>
                                 </div>
                             </div>
