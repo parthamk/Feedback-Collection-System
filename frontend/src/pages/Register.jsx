@@ -32,7 +32,7 @@ const Register = () => {
       console.log(response.data);
       toast.success("Registration successful", { duration: 3000 });
       setTimeout(() => {
-        navigate("/");
+        navigate("/login");
       }, 3000);
     } catch (error) {
       toast.error(error.response.data.message);
@@ -59,7 +59,7 @@ const Register = () => {
               </h1>
               <p className="font-semibold">
                 Already Have an Account?
-                <Link to="/" className="text-blue-600 font-semibold">
+                <Link to="/login" className="text-blue-600 font-semibold">
                   Sign in
                 </Link>
               </p>

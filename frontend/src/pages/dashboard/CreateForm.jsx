@@ -29,6 +29,8 @@ const CreateForm = () => {
           Create New Form
         </button>
       )}
+      
+      <h3 className='text-xl font-light mt-4'>Recent Form</h3>
       <ul className={`mt-4 overflow-y-auto px-5 ${isCreating ? 'hidden' : 'block'}`} style={{ maxHeight: '65vh' }}>
         {forms.map((form, index) => (
           <li key={index} className="bg-white shadow-md rounded-lg p-4 mt-4">
