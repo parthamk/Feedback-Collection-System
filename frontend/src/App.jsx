@@ -4,7 +4,7 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/dashboard/Dashboard.jsx";
 import FeedbackForm from "./components/FeedbackForm.jsx";
 import RequireAuth from "./components/RequireAuth"; // Import the RequireAuth component
-import LandingPage from "./pages/landingPage/LandingPage.jsx"
+import LandingPage from "./pages/landingpage/LandingPage.jsx"
 import ThankYou from "./components/ThankYou.jsx";
 
 const App = () => {
