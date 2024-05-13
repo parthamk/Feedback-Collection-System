@@ -1,28 +1,41 @@
-import HeroImg from "./images/Illustration.png"
+
+import ContactImg from "./images/contact-img.png";
 
 const Contact = () => {
     return (
-        <div id="contact-us" className="flex flex-col items-center justify-center bg-gradient-to-r from-cyan-200 to-red-400">
-            {/* <div className="container mx-auto px-10 py-10"> */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-fit mx-12 md:mx-10 mt-5 mb-5 bg-gradient-to-r from-yellow-100 to-yellow-300 p-6  rounded-lg">
-                <div className="space-y-4 ">
-                    <h2 className="text-2xl text-gray-600 font-bold">Contact Us</h2>
-                    <a className="text-sm text-gray-500">if you need some help or anyother questions, feel free to ask.</a>
-
-                    <input type="name" name="name" id="name" placeholder='Your name' className='p-1 mt-1 w-full outline-none border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-90 block' />
-                    <input type="email" name="email" id="email" placeholder='jhondoe@example.com' className='p-1 mt-1 w-full outline-none border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-90 block' />
-                    <textarea name='message' id="message" placeholder='Your message' className=" p-1 mt-1 w-full outline-none border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-90 block"></textarea>
-
-                    <button className="text-white bg-gradient-to-r from-blue-400 to-red-600 hover:from-red-600 hover:to-blue-400 p-2 rounded-md mt-5 font-bold ">Submit</button>
+            <div className='bg-blue-900 min-h-screen '>
+            <h2 className='font-bold text-white flex justify-center items-center text-3xl p-8 mb-4'> Contact</h2>
+        
+            <div className=' flex justify-center   '>
+        
+              <div className='bg-gray-900  w-full lg:w-2/6 border border-2xl p-4 border-gray-500 rounded-md'>
+                 <form >
+                 <div className='flex justify-center p-2 '>
+                 <h2 className='text-xl text-white font-semibold'>Get In Touch</h2>
+                 </div>
+                 <div className='flex flex-col lg:flex '>
+                 <label htmlFor='name' className='text-white font-bold '>Name*</label>
+                 <input type='text' name='name' placeholder='Enter Your Name' className='text-white p-3 h-10 rounded-sm bg-gray-900  mt-2 mb-2 border border-gray-500 ' />
+                 <label htmlFor='email' className='text-white font-bold'>Email*</label>
+                 <input type='email' name='email' placeholder='Enter your Email' className=' text-white p-3 border mt-2 mb-2 h-10 rounded-sm bg-gray-900 border-gray-500' />
+                 <label htmlFor='email' className='text-white font-bold'>Message*</label>
+                 <textarea type='text' name='message' placeholder='Message' className='text-white p-3 border mt-2 mb-2 h-28 rounded-sm bg-gray-900 border-gray-500' />
+                 <button className="w-28 rounded-md bg-gray-700 hover:bg-gray-800 text-white mt-3 mb-3 lg:mb-0 p-2 font-bold" type="submit">
+                 Submit
+                </button> 
                 </div>
-
-                <div className="hidden lg:block lg:mt-10">
-                    <img src={HeroImg} alt="Image" className="rounded-lg w-2/3 ml-20" />
+                </form> 
+               </div>
+        
+               <div className=' hidden ml-4 lg:block'>
+                    <img src={ContactImg} alt='ContactImg'/>
                 </div>
+        
             </div>
-
-        </div>
-    )
+           </div>
+            
+          )
+        
 }
 
 export default Contact
