@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 const Home = () => {
   return (
 
-    <div className="flex flex-col items-center justify-center min-h-80 bg-gradient-to-r from-orange-200 to-cyan-200  px-10 py-10">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-orange-200 to-cyan-200  px-10 py-10">
       {/* <div className="container mx-auto px-10 py-10"> */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-fit mx-12 md:mx-10 ">
 
