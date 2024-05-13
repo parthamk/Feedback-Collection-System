@@ -26,7 +26,7 @@ const Register = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/auth/register",
+        "https://feedback-collection-system.onrender.com/auth/register",
         fromData
       );
       console.log(response.data);

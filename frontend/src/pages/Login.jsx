@@ -19,7 +19,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8000/auth/login",
+        "https://feedback-collection-system.onrender.com/auth/login",
         fromData
       );
       console.log(response.data);

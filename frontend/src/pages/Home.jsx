@@ -18,7 +18,7 @@ const Home = () => {
 
   const fetchUserData = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/api/forms");
+      const response = await axios.get("https://feedback-collection-system.onrender.com/api/forms");
       const { forms, totalForms, averageRating } = response.data;
       setUserData(forms);
       setTotalForms(totalForms);
