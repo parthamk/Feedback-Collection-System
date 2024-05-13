@@ -31,7 +31,7 @@ const Home = () => {
   return loading ? (
     <Spinner />
   ) : (
-    <div className="flex items-center justify-center flex-col h-full">
+    <div className="flex items-center justify-center flex-col h-full w-auto">
       <h2 className="font-bold mt-8 mb-8 text-3xl">
         <span>Admin </span>
         <span className="text-red-500">Dashboard</span>
@@ -48,7 +48,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="bg-white shadow rounded-lg mt-8 p-6 flex flex-col items-center justify-center border border-blue-500 ">
+      <div className="bg-white shadow rounded-lg mt-8 p-6 flex flex-col items-center justify-center border border-blue-500 w-1/2">
         <h3 className="text-lg font-bold text-red-500">User Data</h3>
 
         <div className="overflow-auto h-48 w-full">

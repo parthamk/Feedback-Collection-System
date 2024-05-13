@@ -44,20 +44,6 @@ const Home = () => {
 
 export default Home
 
-{/* <div className="mt-1">
-<div className="flex flex-row justify-between items-stretch bg-blue-50">
-  <div className="flex flex-col justify-center items-start w-3/5">
-    <h1 className="text-6xl text-gray-600 font-bold ml-20">FeedBacks and Insights</h1>
-    <h1 className="text-5xl text-blue-500 font-bold mt-3 ml-20">from 5 years</h1>
-    <a className="text-gray-500 mt-3 ml-20">Empowering Voices, Amplifying Impact: Transforming Feedback into Actionable Insights</a>
-    <button className="text-white bg-blue-500 p-2 rounded-md mt-5 ml-20">Register</button>
-  </div>
-  <div className="flex justify-center items-center w-2/5">
-    <img src={HeroImg} alt="heroImg" className="w-full h-auto p-2 mt-10 mb-10" />
-  </div>
-</div>
-</div> */}
-
 
 
 
