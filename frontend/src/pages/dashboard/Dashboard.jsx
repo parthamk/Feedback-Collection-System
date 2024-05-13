@@ -18,7 +18,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchAdminData = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/auth/admins");
+        const response = await axios.get("https://feedback-collection-system.onrender.com/auth/admins");
         console.log("Response", response.data);
         const { adminData } = response.data;
 
