@@ -5,19 +5,17 @@ import rate from "../assets/rate.png";
 import reasonLogo from "../assets/reasonLogo.jpg";
 import welcome from "../assets/welcome.jpg";
 import { useNavigate } from "react-router-dom";
-// import ThankYou from "./ThankYou";
 
 const FeedbackForm = () => {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
-  // const [wordCount, setWordCount] = useState(0);
-  // const [reason, setReason] = useState("");
 
   const [fromData, setFromData] = useState({
     name: "",
     email: "",
     rating: 0,
     reason: "",
+  
   });
   console.log(fromData);
 
@@ -26,6 +24,11 @@ const FeedbackForm = () => {
       toast.error("All fields are Mandatory");
       return;
     }
+    if (step == 1 && !fromData.email.includes("@")) {
+      toast.error("Please enter a valid email");
+      return;
+    }
+
     if (step == 2 && fromData.rating == 0) {
       toast.error("Please give the rating");
       return;
@@ -58,9 +61,11 @@ const FeedbackForm = () => {
       // console.log(response);
       // console.log("Axios",fromData);
 
-      toast.success(response.data.message, { duration: 4000 });
+      toast.success(response.data.message);
 
-      navigate("/ThankYou");
+      setTimeout(() => {
+        navigate(`/thankYou?name=${fromData.name}`);
+      }, 2000);
 
       setFromData({
         name: "",
@@ -77,25 +82,12 @@ const FeedbackForm = () => {
         toast.error(error.response.data.message); //server error
       }
     }
-
-    // return (
-    //   <div>
-    //     {/* thankyou image should be here */}
-    //     Hi ${fromData.name} , Thankyou For your Valuable Feedback. We will get
-    //     back to you.
-    //   </div>
-    // );
   };
 
   const handleChange = (identifier, value) => {
     setFromData({ ...fromData, [identifier]: value });
     console.log("Reason", fromData);
   };
-
-  // const handleWordCount = (event) => {
-  //   setReason(event.target.value);
-  //   setWordCount(event.target.value.length);
-  // };
 
   let content;
 
@@ -106,98 +98,87 @@ const FeedbackForm = () => {
   } else {
     content = <img src={welcome} alt="welcomeLogo" />;
   }
-
   return (
-    <div className="flex items-center justify-center h-screen bg-gradient-to-b from-blue-400 to-blue-100 ">
+    <div className="flex items-center justify-center h-screen bg-gradient-to-b from-blue-400 to-blue-100 md:px-8 ">
       <Toaster />
-      <div className="w-[900px] h-[500px] bg-white rounded-[20px] flex shadow-2xl  ">
-        <div className="w-[50%] h-[500px] flex justify-center items-center rounded-[10px]">
-          {content}
+      <div className="w-full md:w-[900px] bg-white rounded-[20px] shadow-2xl ">
+        <div className="flex flex-col justify-center items-center mt-8">
+          <h1 className="text-3xl font-semibold text-blue-600 text-center mb-8 ">
+            Feedback
+          </h1>
         </div>
-
-        <div className="w-[50%] h-[600px] flex justify-evenly items-center rounded-[10px]">
-          <form
-            onSubmit={handleSubmit}
-            className="w-[100%] h-[500px] flex flex-col"
-          >
-            <h1 className="text-[30px] font-semibold text-blue-600 text-center">
-              Feedback
-            </h1>
-            {/* <input
-              type="text"
-              name="name"
-              id="name"
-              placeholder="Enter your name"
-              className="border"
-              onChange={handleChange}
-            /> */}
-            {step === 1 && (
-              <div className="flex flex-col p-8 mt-8 justify-center">
-                {/* <h2 className="text-2xl font-bold mb-4">
-                  Step 1: Name & Email
-                </h2> */}
-                <label htmlFor="" className="text-xl font-semibold mb-2">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  value={fromData.name}
-                  onChange={(e) => handleChange("name", e.target.value)}
-                  placeholder="Enter Your Name"
-                  className="w-full border outline-none border-gray-300 p-2 rounded-md mb-4"
-                />
-                <label htmlFor="" className="text-xl font-semibold mb-2">
-                  Email
-                </label>
-                <input
-                  name="email"
-                  type="email"
-                  value={fromData.email}
-                  onChange={(e) => handleChange("email", e.target.value)}
-                  placeholder="Enter Your Email"
-                  className="w-full border  outline-none border-gray-300 p-2 rounded-md mb-4"
-                />
-                <div className="flex  justify-end">
-                  <button
-                    type="button"
-                    onClick={handleNextStep}
-                    className="bg-blue-500  text-white px-6 py-2 rounded-md"
-                  >
-                    Next
-                  </button>
+        <div className="md:flex">
+          <div className="md:w-[50%] p-4">{content}</div>
+          <div className="md:w-[50%] p-4 md:pt-8 ">
+            <form onSubmit={handleSubmit} className="p-4">
+              {step === 1 && (
+                <div className="flex flex-col mb-4">
+                  <label className="text-xl font-semibold mb-2">Name</label>
+                  <input
+                    type="text"
+                    value={fromData.name}
+                    onChange={(e) => handleChange("name", e.target.value)}
+                    placeholder="Enter Your Name"
+                    className="outline-none bg-transparent border-2 border-blue-400 shadow-2xl placeholder:text-blue-600 font-semibold p-2 mb-4 rounded-md"
+                  />
+                  <label className="text-xl font-semibold mb-2">Email</label>
+                  <input
+                    type="email"
+                    value={fromData.email}
+                    onChange={(e) => handleChange("email", e.target.value)}
+                    placeholder="Enter Your Email"
+                    className="outline-none bg-transparent border-2 border-blue-400 shadow-2xl placeholder:text-blue-600 font-semibold p-2 mb-4 rounded-md"
+                  />
                 </div>
-              </div>
-            )}
-            {step === 2 && (
-              <div className="flex flex-col p-12 justify-center">
-                <h2 className="text-2xl font-semibold mb-4 ">
-                  {" "}
-                  What is the rating can you provide us?
-                </h2>
-                <div className="flex flex-row">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <button
-                      type="button"
-                      key={star}
-                      onClick={() => handleClick(star)}
-                      className={`text-3xl ${
-                        star <= fromData.rating
-                          ? "text-yellow-400"
-                          : "text-gray-300"
-                      }`}
-                    >
-                      ★
-                    </button>
-                  ))}
+              )}
+              {step === 2 && (
+                <div className="flex flex-col mb-4">
+                  <h2 className="text-2xl font-semibold mb-4 text-center">
+                    What rating would you give us?
+                  </h2>
+                  <div className="flex justify-center">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <button
+                        type="button"
+                        key={star}
+                        onClick={() => handleClick(star)}
+                        className={`text-3xl ${
+                          star <= fromData.rating
+                            ? "text-yellow-400"
+                            : "text-gray-300"
+                        }`}
+                      >
+                        ★
+                      </button>
+                    ))}
+                  </div>
                 </div>
-                <div className="mt-4">
+              )}
+              {step === 3 && (
+                <div className="flex flex-col mb-4">
+                  <h2 className="text-2xl font-semibold mb-4 text-center">
+                    Please provide your feedback
+                  </h2>
+                  <textarea
+                    value={fromData.reason}
+                    onChange={(e) => handleChange("reason", e.target.value)}
+                    placeholder="Share your feedback (Max 500 words)"
+                    className="border border-gray-300 rounded-md p-2 mb-4 focus:outline-none focus:border-blue-400"
+                    rows={5}
+                  />
+                </div>
+              )}
+              <div className="flex justify-between">
+                {step > 1 && (
                   <button
                     type="button"
                     onClick={handlePreviousStep}
-                    className="bg-gray-400 text-white px-4 py-2 rounded-md mr-4"
+                    className="bg-gray-400 text-white px-4 py-2 rounded-md"
                   >
                     Previous
                   </button>
+                )}
+                {step < 3 && (
                   <button
                     type="button"
                     onClick={handleNextStep}
@@ -205,38 +186,18 @@ const FeedbackForm = () => {
                   >
                     Next
                   </button>
-                </div>
-              </div>
-            )}
-
-            {step === 3 && (
-              <div className="flex flex-col p-12 justify-center">
-                <h2 className="text-2xl font-semibold mb-4">
-                  Can you please give us the reason?
-                </h2>
-                <textarea
-                  value={fromData.reason}
-                  onChange={(e) => handleChange("reason", e.target.value)}
-                  placeholder="Share your feedback (Max 500 words)"
-                  className="w-full border border-gray-300 p-2 rounded-md mb-4"
-                  rows={5}
-                />
-                {/* <p className="text-sm text-right">{wordCount}/500 words</p> */}
-                <div className="mt-4">
+                )}
+                {step === 3 && (
                   <button
-                    type="button"
-                    onClick={handlePreviousStep}
-                    className="bg-gray-400 text-white px-4 py-2 rounded-md mr-4"
+                    className="bg-blue-500 text-white px-4 py-2 rounded-md"
+                    type="submit"
                   >
-                    Previous
-                  </button>
-                  <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
                     Submit
                   </button>
-                </div>
+                )}
               </div>
-            )}
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </div>
