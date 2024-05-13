@@ -55,7 +55,7 @@ const FeedbackForm = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/submit",
+        "https://feedback-collection-system.onrender.com/api/submit",
         fromData
       );
       // console.log(response);
