@@ -64,7 +64,7 @@ const Home = () => {
       </div>
 
       {showNotification ? (
-        <div className="bg-white shadow rounded-lg  mt-8 p-6 flex flex-col items-center justify-center border border-blue-500 w-1/2">
+        <div className="bg-white shadow rounded-lg  mt-8 p-2 flex flex-col items-center justify-center border border-blue-500 w-2/3">
           <h3 className="text-lg font-bold text-red-500">Notification</h3>
 
           <Notification />

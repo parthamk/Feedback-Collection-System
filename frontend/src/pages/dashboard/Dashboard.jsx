@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Home from "../Home";
 import axios from "axios";
 import Profile from "../Profile/Profile";
-import CreateForm from "./CreateForm";
+// import CreateForm from "./CreateForm";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -13,18 +13,20 @@ const Dashboard = () => {
   const [adminData, setAdminData] = useState([]);
 
   const loggedAdmin = JSON.parse(localStorage.getItem("adminName"));
-  console.log("loggedAdmin.adminName", loggedAdmin.adminName);
+  // console.log("loggedAdmin.adminName", loggedAdmin.adminName);
 
   useEffect(() => {
     const fetchAdminData = async () => {
       try {
-        const response = await axios.get("https://feedback-collection-system.onrender.com/auth/admins");
-        console.log("Response", response.data);
+        const response = await axios.get(
+          "https://feedback-collection-system.onrender.com/auth/admins"
+        );
+        // console.log("Response", response.data);
         const { adminData } = response.data;
 
         //like filter the data of an admin based on logged in Admin name and send the data to profile component
         const data = adminData.filter((d) => d.name === loggedAdmin.adminName);
-        console.log(data);
+        // console.log(data);
 
         setAdminData(data);
       } catch (error) {
@@ -54,7 +56,7 @@ const Dashboard = () => {
             className="rounded-full h-16 w-16"
           />
 
-          {console.log(adminData)}
+          {/* {console.log(adminData)} */}
           {adminData.length > 0 ? (
             <p className="mt-1 ml-2 font-semibold">
               {/* rendering profile name */}
@@ -88,7 +90,7 @@ const Dashboard = () => {
                 Profile
               </a>
             </li>
-            <li className="mt-2">
+            {/* <li className="mt-2">
               <a
                 href="#"
                 className={`block text-xl text-black w-ful shadow hover:shadow-lg py-2 px-4 ' ${
@@ -98,7 +100,7 @@ const Dashboard = () => {
               >
                 CreateForm
               </a>
-            </li>
+            </li> */}
           </ul>
         </div>
         <div className="mt-auto">
@@ -116,7 +118,7 @@ const Dashboard = () => {
       <div className="w-4/5 bg-blue-gray-50 bg-blue-100 p-4 ">
         {currentPage === "Home" && <Home />}
         {currentPage === "Profile" && <Profile adminData={adminData} />}
-        {currentPage === 'CreateForm' && <CreateForm />}
+        {/* {currentPage === 'CreateForm' && <CreateForm />} */}
       </div>
     </div>
   );

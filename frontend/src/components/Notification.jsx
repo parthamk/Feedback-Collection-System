@@ -28,9 +28,9 @@ const Notification = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
+    <div className="w-full mx-auto p-2">
       <h3 className="text-xl font-light mt-4">Recent Notification</h3>
-      <ul className="mt-4 overflow-y-auto px-5 " style={{ maxHeight: "65vh" }}>
+      <ul className="mt-4 overflow-y-auto px-2 h-60">
         {userData.map((user, index) => (
           <li key={index} className="bg-white shadow-md rounded-lg p-4 mt-4">
             <div className="flex justify-between items-center">
@@ -46,9 +46,6 @@ const Notification = () => {
           </li>
         ))}
       </ul>
-      {/* {isCreating && (
-        <FormCreation setIsCreating={setIsCreating} />
-      )} */}
     </div>
   );
 };
