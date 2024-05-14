@@ -15,7 +15,6 @@ const FeedbackForm = () => {
     email: "",
     rating: 0,
     reason: "",
-  
   });
   console.log(fromData);
 

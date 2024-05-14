@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
@@ -22,10 +22,13 @@ const Login = () => {
         "https://feedback-collection-system.onrender.com/auth/login",
         fromData
       );
-      console.log(response.data);
+
+      console.log("Response under Login", response.data);
       localStorage.setItem("adminName", JSON.stringify(response.data));
-      toast.success("Logged in successfully");
-      navigate("/dashboard");
+      toast.success(response.data.message);
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 2000);
     } catch (error) {
       toast.error(error.response.data.message);
     }
