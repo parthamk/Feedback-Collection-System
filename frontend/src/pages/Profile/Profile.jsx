@@ -6,6 +6,7 @@ import Spinner from "../../Spinner";
 
 const Profile = ({ adminData }) => {
   const [loading, setLoading] = useState("true");
+  const [avatar, setAvatar] = useState(null);
   const [editData, setEditData] = useState({
     name: adminData[0].name || "",
     email: adminData[0].email || "",
@@ -27,9 +28,13 @@ const Profile = ({ adminData }) => {
     }));
   }
 
+  const handleAvatarChange = (file) => {
+    setAvatar(file);
+  };
+
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("Update details submitted", editData);
+    // console.log("Update details submitted", editData);
   }
 
   return loading ? (
@@ -44,27 +49,45 @@ const Profile = ({ adminData }) => {
       <div className="flex items-start justify-center mt-8">
         {/* Left section  */}
         <div className="w-1/5 bg-white text-black-200 p-4  flex flex-col justify-between mr-8 ml-8]]]  items-center rounded-md shadow border border-red-500 ">
-          <img
-            src="https://w7.pngwing.com/pngs/177/551/png-transparent-user-interface-design-computer-icons-default-stephen-salazar-graphy-user-interface-design-computer-wallpaper-sphere-thumbnail.png"
-            alt="admin"
-            className="rounded-full h-20 w-20 mt-4 "
-          />
-          {console.log(adminData[0])}
+          {avatar ? (
+            <img
+              src={URL.createObjectURL(avatar)}
+              alt="admin"
+              className="rounded-full h-20 w-20 mt-4"
+            />
+          ) : (
+            <img
+              src="https://w7.pngwing.com/pngs/177/551/png-transparent-user-interface-design-computer-icons-default-stephen-salazar-graphy-user-interface-design-computer-wallpaper-sphere-thumbnail.png"
+              alt="admin"
+              className="rounded-full h-20 w-20 mt-4 "
+            />
+          )}
+          {/* {console.log(adminData[0])} */}
 
           <p className="mt-4 font-semibold" key={adminData[0]._id}>
             {adminData[0].name !== "" ? adminData[0].name : "Admin Name"}{" "}
           </p>
-
-          <button className="bg-red-400 hover:bg-red-500 text-white py-2 px-4 rounded-full width-full mt-7">
+          <input
+            type="file"
+            id="choose-avatar"
+            name="choose-avatar"
+            onChange={(e) => handleAvatarChange(e.target.files[0])}
+            style={{ display: "none" }}
+          />
+          <label
+            htmlFor="choose-avatar"
+            className="bg-red-400 hover:bg-red-500 text-white py-2 px-4 rounded-full width-full mt-7 cursor-pointer"
+          >
             Change Avatar
-          </button>
-          <p className="ml-2 mt-4">No file chosen</p>
+          </label>
+
+          <p className="ml-2 mt-4">{avatar ? avatar.name : "No file chosen"}</p>
         </div>
 
         {/* Right section */}
         <div className="w-3/5  bg-white h-2/3 text-black-200 p-4  shadow border border-blue-400 rounded-md">
           <form onSubmit={handleSubmit}>
-            {console.log(adminData)}
+            {/* {console.log(adminData)} */}
 
             <h2 className="font-bold mb-4 text-center">Edit Details</h2>
 
