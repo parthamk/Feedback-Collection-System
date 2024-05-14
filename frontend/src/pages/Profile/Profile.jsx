@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 
+
 import { useEffect, useState } from "react";
 import ProfileHelper from "./ProfileHelper";
 import Spinner from "../../Spinner";
@@ -14,6 +15,9 @@ const Profile = ({ adminData }) => {
     confirmPassword: "",
   });
 
+  //avatar chnaging
+  const [avatar,setAvatar]=useState(null);
+
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
@@ -25,6 +29,11 @@ const Profile = ({ adminData }) => {
       ...prevValue,
       [identifier]: value,
     }));
+  }
+
+  //avatar chnaging
+  function handleAvatarChange(file){
+    setAvatar(file)
   }
 
   function handleSubmit(e) {
@@ -44,11 +53,21 @@ const Profile = ({ adminData }) => {
       <div className="flex items-start justify-center mt-8">
         {/* Left section  */}
         <div className="w-1/5 bg-white text-black-200 p-4  flex flex-col justify-between mr-8 ml-8]]]  items-center rounded-md shadow border border-red-500 ">
-          <img
+          {avatar ? (
+            <img
+              src={URL.createObjectURL(avatar)}
+              alt="admin"
+              className="rounded-full h-20 w-20 mt-4"
+            />
+          ):(
+            <img
             src="https://w7.pngwing.com/pngs/177/551/png-transparent-user-interface-design-computer-icons-default-stephen-salazar-graphy-user-interface-design-computer-wallpaper-sphere-thumbnail.png"
             alt="admin"
             className="rounded-full h-20 w-20 mt-4 "
           />
+
+          )}
+          
           {console.log(adminData[0])}
 
           {/* {adminData[0].map((admin, index) => (
@@ -60,11 +79,22 @@ const Profile = ({ adminData }) => {
           <p className="mt-4 font-semibold" key={adminData[0]._id}>
             {adminData[0].name !== "" ? adminData[0].name : "Admin Name"}{" "}
           </p>
-
-          <button className="bg-red-400 hover:bg-red-500 text-white py-2 px-4 rounded-full width-full mt-7">
+          <input
+            type="file"
+            id="choose-avatar"
+            name="choose-avatar"
+            onChange={(e)=>handleAvatarChange(e.target.files[0])}
+            style={{display:"none"}}
+          />
+          <label
+            htmlFor="choose-avatar"
+            className="bg-red-400 hover:bg-red-500 text-white py-2 px-4 rounded-full width-full mt-7 cursor-pointer" 
+          >
             Change Avatar
-          </button>
-          <p className="ml-2 mt-4">No file chosen</p>
+            </label>
+          <p className="ml-2 mt-4">
+           {avatar ? avatar.name:"No file chosen"} 
+            </p>
         </div>
 
         {/* Right section */}
@@ -117,3 +147,5 @@ const Profile = ({ adminData }) => {
 };
 
 export default Profile;
+
+
