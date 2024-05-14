@@ -51,12 +51,6 @@ const Profile = ({ adminData }) => {
           />
           {console.log(adminData[0])}
 
-          {/* {adminData[0].map((admin, index) => (
-            <p className="mt-1 font-semibold" key={index}>
-              {admin.name !== "" ? admin.name : "Admin Name"}{" "}
-            </p>
-          ))} */}
-
           <p className="mt-4 font-semibold" key={adminData[0]._id}>
             {adminData[0].name !== "" ? adminData[0].name : "Admin Name"}{" "}
           </p>
@@ -68,7 +62,7 @@ const Profile = ({ adminData }) => {
         </div>
 
         {/* Right section */}
-        <div className="w-3/5 h-96 bg-white text-black-200 p-4 overflow-auto shadow border border-blue-400 rounded-md">
+        <div className="w-3/5  bg-white h-2/3 text-black-200 p-4  shadow border border-blue-400 rounded-md">
           <form onSubmit={handleSubmit}>
             {console.log(adminData)}
 
@@ -88,20 +82,20 @@ const Profile = ({ adminData }) => {
               disabled
             />
             <ProfileHelper
-              label="Old Password"
               type="password"
+              label="Old Password"
               value={editData.oldPassword}
               onSet={(e) => handleChange("oldPassword", e.target.value)}
             />
             <ProfileHelper
-              label="New Password"
               type="password"
+              label="New Password"
               value={editData.newPassword}
               onSet={(e) => handleChange("newPassword", e.target.value)}
             />
             <ProfileHelper
-              label="Confirm Password"
               type="password"
+              label="Confirm Password"
               value={editData.confirmPassword}
               onSet={(e) => handleChange("confirmPassword", e.target.value)}
             />
