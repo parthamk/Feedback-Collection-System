@@ -75,31 +75,36 @@ exports.getAllAdmins = async (req, res) => {
 };
 
 exports.updatePassword = async (req, res) => {
+  const {email, oldPassword, newPassword, confirmPassword} = req.body;
+  console.log(req.body);
   try {
-    const {oldPassword, newPassword, confirmPassword} = req.body;
-    // Password match
     if(newPassword !== confirmPassword) {
       return res.status(400).json({message: "Password didn't match"});
     }
 
-    //find user by id
-    const user = await Auth.findById(req.user.id);
+    // Find the user
+    const user = await Auth.findOne({email});
+    console.log("User", user);
 
-    //Checking if old password is correct
-    const isMatch = await bcrypt.compare(oldPassword, user.password);
-    if(!isMatch){
-      return res.status(400).json({message:"Old password is incorrect"})
+    // Check if the user exists
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
     }
 
-    //Hash new password
+    // Check if the old password is correct
+    const isMatch = await bcrypt.compare(oldPassword, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: "Incorrect password" });
+    }
+    // Hash the new password
     const hashedPassword = await bcrypt.hash(newPassword, 10);
 
-    //Update the password
-    await Auth.findByIdAndUpdate(req.user.id, {password: hashedPassword});
+    // Update the password
+    user.password = hashedPassword;
+    await user.save();
 
     res.status(200).json({message:"Password Updated successfully"})
   } catch (error) {
-    console.error("Error updating password: ", error);
-    res.status(500).json({message: "Server error"});
+    res.status(500).json({message: error.message});
   }
 }
