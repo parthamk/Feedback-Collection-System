@@ -3,7 +3,7 @@ import ContactImg from "./images/contact-img.png";
 
 const Contact = () => {
     return (
-            <div className='bg-blue-900 min-h-screen '>
+            <div className='bg-blue-900 min-h-screen' id="contact-us">
             <h2 className='font-bold text-white flex justify-center items-center text-3xl p-8 mb-4'> Contact</h2>
         
             <div className=' flex justify-center   '>

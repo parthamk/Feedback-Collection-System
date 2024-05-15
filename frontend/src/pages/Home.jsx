@@ -3,6 +3,7 @@ import axios from "axios";
 import Spinner from "../Spinner";
 import Notification from "../components/Notification";
 import ExcelExportComponent from "../components/ExcelpExportComponent";
+import Bell from "../assets/notification.svg";
 
 const Home = () => {
   const [userData, setUserData] = useState([]);
@@ -56,11 +57,12 @@ const Home = () => {
         </div>
         <button
           type="button"
-          className="bg-white shadow-md m-2 p-4 rounded-lg flex flex-col items-center cursor-pointer justify-center border border-blue-400"
+          className="absolute top-0 right-0 rounded-full bg-white shadow-md m-2 p-4 flex flex-col items-center bg-gradient-to-r from-blue-400 to-red-600 cursor-pointer justify-center border border-blue-400"
           onClick={handleShowNotification}
         >
-          <h3 className="text-lg font-semibold">Notifications</h3>
-          <p className="text-lg font-semibold">{averageRating.toFixed(2)}</p>
+          {/* <h3 className="text-lg font-semibold">Notifications</h3> */}
+          <img src={Bell} alt="Bell" className=" w-8 h-8" />
+          {/* <p className="text-lg font-semibold">{averageRating.toFixed(2)}</p> */}
         </button>
       </div>
 

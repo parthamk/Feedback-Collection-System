@@ -47,7 +47,7 @@ const About = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="hidden lg:block lg:mt-20">
+                            <div className="hidden lg:block lg:mt-40 lg:ml-40 w-96 h-96 ">
                                 <img src={Image2} alt="Image" className="rounded-lg" />
                             </div>
                         </div>
