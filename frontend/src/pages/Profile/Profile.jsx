@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import ProfileHelper from "./ProfileHelper";
 import Spinner from "../../Spinner";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 const Profile = ({ adminData }) => {
   const [loading, setLoading] = useState("true");
@@ -36,13 +37,16 @@ const Profile = ({ adminData }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.patch("https://feedback-collection-system.onrender.com/auth/update",editData, {
+      const response = await axios.put("https://feedback-collection-system.onrender.com/admin/updatePassword",editData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         }
       })
+     
+      toast.success("Password updated successfully");
 
       console.log("Password updated", response);
+  
 
       setEditData({
         oldPassword: "",
@@ -52,6 +56,7 @@ const Profile = ({ adminData }) => {
 
     } catch (error) {
       console.error("Error updating password", error);
+      toast.error("Error updating password");
     }
 
   }
@@ -148,6 +153,7 @@ const Profile = ({ adminData }) => {
           </form>
         </div>
       </div>
+      <Toaster />
     </div>
   );
 };
