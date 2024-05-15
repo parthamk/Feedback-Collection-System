@@ -1,17 +1,32 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import Img from "../assets/signup.png";
+import Eye from "../components/Eye";
 
 const Register = () => {
   const navigate = useNavigate();
+
+  const [passwordType, setPasswordType] = useState("password");
+  const [confirmPasswordType, setConfirmPasswordType] = useState("password");
+
   const [fromData, setFromData] = useState({
     name: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
+
+  const handlePassword = () => {
+    setPasswordType(passwordType === "password" ? "text" : "password");
+  };
+
+  const handleConfirmPassword = () => {
+    setConfirmPasswordType(
+      confirmPasswordType === "password" ? "text" : "password"
+    );
+  };
 
   const handleChange = (e) => {
     setFromData({ ...fromData, [e.target.name]: e.target.value });
@@ -59,7 +74,7 @@ const Register = () => {
               </h1>
               <p className="font-semibold">
                 Already Have an Account?
-                <Link to="/login" className="text-blue-600 font-semibold">
+                <Link to="/login" className="text-blue-600 font-semibold ml-2">
                   Sign in
                 </Link>
               </p>
@@ -85,25 +100,40 @@ const Register = () => {
                 className="w-[100%] h-[40px] text-start outline-none bg-transparent border-b-2 border-blue-400 shadow-2xl placeholder:text-blue-600 font-semibold"
                 onChange={handleChange}
               />
-              <input
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Enter your Password"
-                className="w-[100%] h-[40px] text-start outline-none bg-transparent border-b-2 border-blue-400 shadow-2xl placeholder:text-blue-600 font-semibold"
-                onChange={handleChange}
-              />
-              <input
-                type="password"
-                name="confirmPassword"
-                id="confirmPassword"
-                placeholder="Confirm your Password"
-                className="w-[100%] h-[40px] text-start outline-none bg-transparent border-b-2 border-blue-400 shadow-2xl placeholder:text-blue-600 font-semibold"
-                onChange={handleChange}
-              />
+              <div className="flex items-center w-full relative">
+                <input
+                  type={passwordType}
+                  name="password"
+                  id="password"
+                  placeholder="Enter your Password"
+                  className="w-[100%] h-[40px] text-start outline-none bg-transparent border-b-2 border-blue-400 shadow-2xl placeholder:text-blue-600 font-semibold"
+                  onChange={handleChange}
+                />
+                <span className="absolute right-0">
+                  <Eye inputType={passwordType} toggleEye={handlePassword} />
+                </span>
+              </div>
+
+              <div className="flex items-center w-full relative">
+                <input
+                  type={confirmPasswordType}
+                  name="confirmPassword"
+                  id="confirmPassword"
+                  placeholder="Confirm your Password"
+                  className="w-[100%] h-[40px] text-start outline-none bg-transparent border-b-2 border-blue-400 shadow-2xl placeholder:text-blue-600 font-semibold"
+                  onChange={handleChange}
+                />
+                <span className="absolute right-0">
+                  <Eye
+                    inputType={confirmPasswordType}
+                    toggleEye={handleConfirmPassword}
+                  />
+                </span>
+              </div>
+
               <button
                 type="submit"
-                className="w-[70%] h-[40px] bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md shadow-2xl"
+                className="w-[30%] h-[40px] bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md shadow-2xl"
               >
                 Sign Up
               </button>
