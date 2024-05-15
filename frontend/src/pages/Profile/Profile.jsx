@@ -38,11 +38,11 @@ const Profile = ({ adminData }) => {
     try {
       const response = await axios.patch("https://feedback-collection-system.onrender.com/auth/update",editData, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         }
       })
 
-      console.log(response.data);
+      console.log(response);
 
       setEditData({
         oldPassword: "",
