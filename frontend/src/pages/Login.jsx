@@ -3,17 +3,24 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import Img from "../assets/login.png";
+import Eye from "../components/Eye";
 
 const Login = () => {
   const navigate = useNavigate();
+  const [inputType, setInputType] = useState("password");
+
   const [fromData, setFromData] = useState({
     email: "",
-    passwordL: "",
+    password: "",
   });
 
   const handleChange = (e) => {
     setFromData({ ...fromData, [e.target.name]: e.target.value });
   };
+
+  function toggleEye() {
+    setInputType(inputType === "password" ? "text" : "password");
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -65,28 +72,37 @@ const Login = () => {
                 className="w-[100%] h-[40px] text-start outline-none bg-transparent border-b-2 border-blue-400 shadow-2xl placeholder:text-blue-600 font-semibold"
                 onChange={handleChange}
               />
-              <input
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Enter your Password"
-                className="w-[100%] h-[40px] text-start outline-none bg-transparent border-b-2 border-blue-400 shadow-2xl placeholder:text-blue-600 font-semibold"
-                onChange={handleChange}
-              />
-              <button
-                type="submit"
-                className="w-[70%] h-[40px] bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md shadow-2xl"
-              >
-                Sign In
-              </button>
+              <div className="flex items-center w-full relative">
+                <input
+                  type={inputType}
+                  name="password"
+                  id="password"
+                  placeholder="Enter your Password"
+                  className="w-[100%] h-[40px] text-start outline-none bg-transparent border-b-2 border-blue-400 shadow-2xl placeholder:text-blue-600 font-semibold"
+                  onChange={handleChange}
+                />
+
+                <span className="absolute right-0">
+                  <Eye inputType={inputType} toggleEye={toggleEye} />
+                </span>
+              </div>
+
+              <div className="flex gap-8 ">
+                <p className="text-[17px] font-semibold">
+                  Forgot password?
+                  <Link to="/register" className="text-blue-600 underline ml-2">
+                    Get help
+                  </Link>{" "}
+                  signing in
+                </p>
+                <button
+                  type="submit"
+                  className="w-[30%] h-[40px] bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md shadow-2xl"
+                >
+                  Sign In
+                </button>
+              </div>
             </form>
-            <p className="text-[16px] font-semibold">
-              Forgotten your password or your login details?
-              <Link to="/register" className="text-blue-600 underline">
-                Get help
-              </Link>{" "}
-              signing in
-            </p>
           </div>
         </div>
         <div className="w-[50%] h-[600px] flex justify-center items-center rounded-[10px]">

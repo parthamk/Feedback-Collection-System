@@ -6,7 +6,7 @@ import eye from "../../assets/eye.svg";
 
 const ProfileHelper = ({ label, type, value, onSet, disabled = false }) => {
   const [inputType, setInputType] = useState(type);
-  
+
   const [icon, setIcon] = useState(eyeOff);
   const [isFocused, setIsFocused] = useState(false);
 

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Spinner from "../Spinner";
 import Notification from "../components/Notification";
+import ExcelExportComponent from "../components/ExcelpExportComponent";
 
 const Home = () => {
   const [userData, setUserData] = useState([]);
@@ -38,12 +39,12 @@ const Home = () => {
   return loading ? (
     <Spinner />
   ) : (
-    <div className="flex items-center flex-col h-full w-auto">
-      <h2 className="font-bold mt-3 mb-8 text-3xl">
+    <div className="flex items-center justify-center flex-col h-full w-auto">
+      <h2 className="font-bold mt-8 mb-8 text-3xl">
         <span>Admin </span>
         <span className="text-red-500">Dashboard</span>
       </h2>
-      <div className="flex flex-row mt-8">
+      <div className="flex flex-row">
         <div className="bg-blue-100 shadow-md p-4 m-2 rounded-lg flex flex-col items-center justify-center border border-red-500">
           <h3 className="text-lg font-semibold">Total Number Of Responses</h3>
           <p className="text-lg font-semibold">{totalForms}</p>
@@ -68,13 +69,9 @@ const Home = () => {
           <h3 className="text-lg font-bold text-red-500">Notification</h3>
 
           <Notification />
-
-          {/* <button className="text-white text-lg font-bold p-2 mt-8 bg-red-500 hover:bg-red-600 rounded-full bg-gradient-to-r from-blue-400 to-red-600">
-          Upload To Excel
-        </button> */}
         </div>
       ) : (
-        <div className="bg-white shadow rounded-lg mt-8 p-6 flex flex-col items-center justify-center border border-blue-500 w-2/3 h-1/2">
+        <div className="bg-white shadow rounded-lg mt-8 p-6 flex flex-col items-center justify-center border border-blue-500 w-1/2">
           <h3 className="text-lg font-bold text-red-500">User Data</h3>
 
           <div className="overflow-auto h-48 w-full">
@@ -99,9 +96,8 @@ const Home = () => {
               </tbody>
             </table>
           </div>
-          {/* <button className="text-white text-lg font-bold p-2 mt-8 bg-red-500 hover:bg-red-600 rounded-full bg-gradient-to-r from-blue-400 to-red-600">
-          Upload To Excel
-        </button> */}
+
+          <ExcelExportComponent userData={userData} />
         </div>
       )}
     </div>
