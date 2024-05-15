@@ -14,7 +14,7 @@ exports.submitForm = async (req, res)=>{
         }
         const newForm = new From({name, email, rating, reason});
         const saveData = await newForm.save();
-        res.status(201).json({message:"From Submitted Successfully", saveData});
+        res.status(201).json({message:"Form Submitted Successfully", saveData});
     } catch (error) {
         // console.error("Error Submitting from data",error);
         res.status(500).json({message:'Internal server error'})
