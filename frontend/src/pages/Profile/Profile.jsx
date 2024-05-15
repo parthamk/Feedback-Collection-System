@@ -42,7 +42,7 @@ const Profile = ({ adminData }) => {
         }
       })
 
-      console.log(response);
+      console.log("Password updated", response);
 
       setEditData({
         oldPassword: "",

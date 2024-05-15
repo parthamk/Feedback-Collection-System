@@ -86,7 +86,7 @@ exports.updatePassword = async (req, res) => {
     const user = await Auth.findById(req.user.id);
 
     //Checking if old password is correct
-    const isMatch = await Auth.findById(req.user.id)
+    const isMatch = await bcrypt.compare(oldPassword, user.password);
     if(!isMatch){
       return res.status(400).json({message:"Old password is incorrect"})
     }
