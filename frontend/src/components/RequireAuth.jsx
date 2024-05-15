@@ -6,15 +6,14 @@ const RequireAuth = ({ children }) => {
 
   if (!isAuthenticated) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen bg-gray-200">
-        <div className="bg-white p-8 rounded-lg shadow-lg text-center">
-          <h1 className="text-3xl font-bold">404 Not Found</h1>
-          <p className="text-gray-600 text-lg mb-4">You need to login to see this page.</p>
-          <Link to="/" className="text-blue-500">Go back to login</Link>
-        </div>
+      <div className="flex flex-col items-center justify-center h-screen bg-white">
+        <h2 className='flex justify-center items-center text-9xl '>OOPS!</h2>
+        <label className='bg-white text-black'>404 - THE PAGE CAN{`'`}T BE FOUND</label>
+        <Link to="/" className="text-white rounded-md font-semibold bg-orange-600 p-4 mb-20 mt-4">GO TO LOGIN PAGE</Link>
       </div>
     );
-  }
+}
+  
 
   return children;
 };
