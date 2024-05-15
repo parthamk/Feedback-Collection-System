@@ -73,3 +73,33 @@ exports.getAllAdmins = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
+
+exports.updatePassword = async (req, res) => {
+  try {
+    const {oldPassword, newPassword, confirmPassword} = req.body;
+    // Password match
+    if(newPassword !== confirmPassword) {
+      return res.status(400).json({message: "Password didn't match"});
+    }
+
+    //find user by id
+    const user = await Auth.findById(req.user.id);
+
+    //Checking if old password is correct
+    const isMatch = await Auth.findById(req.user.id)
+    if(!isMatch){
+      return res.status(400).json({message:"Old password is incorrect"})
+    }
+
+    //Hash new password
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    //Update the password
+    await Auth.findByIdAndUpdate(req.user.id, {password: hashedPassword});
+
+    res.status(200).json({message:"Password Updated successfully"})
+  } catch (error) {
+    console.error("Error updating password: ", error);
+    res.status(500).json({message: "Server error"});
+  }
+}

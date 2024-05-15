@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import ProfileHelper from "./ProfileHelper";
 import Spinner from "../../Spinner";
+import axios from "axios";
 
 const Profile = ({ adminData }) => {
   const [loading, setLoading] = useState("true");
@@ -32,10 +33,29 @@ const Profile = ({ adminData }) => {
     setAvatar(file);
   };
 
-  function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log("Update details submitted", editData);
+    try {
+      const response = await axios.patch("https://feedback-collection-system.onrender.com/auth/update",editData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        }
+      })
+
+      console.log(response.data);
+
+      setEditData({
+        oldPassword: "",
+        newPassword: "",
+        confirmPassword: "",
+      });
+
+    } catch (error) {
+      console.error("Error updating password", error);
+    }
+
   }
+
 
   return loading ? (
     <Spinner />
