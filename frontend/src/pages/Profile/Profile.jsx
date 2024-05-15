@@ -41,14 +41,14 @@ const Profile = ({ adminData }) => {
     <Spinner />
   ) : (
     <div>
-      <h2 className="font-bold mt-8 mb-8 text-3xl justify-center items-center flex">
+      <h2 className="font-bold mb-8 text-3xl justify-center items-center flex">
         <span>Update</span>
         <span className="text-red-500 ml-2">Profile</span>
       </h2>
 
       <div className="flex items-start justify-center mt-8">
         {/* Left section  */}
-        <div className="w-1/5 bg-white text-black-200 p-4  flex flex-col justify-between mr-8 ml-8]]]  items-center rounded-md shadow border border-red-500 ">
+        {/* <div className="w-1/5 bg-white text-black-200 p-4  flex flex-col justify-between mr-8 ml-8]]]  items-center rounded-md shadow border border-red-500 ">
           {avatar ? (
             <img
               src={URL.createObjectURL(avatar)}
@@ -62,7 +62,6 @@ const Profile = ({ adminData }) => {
               className="rounded-full h-20 w-20 mt-4 "
             />
           )}
-          {/* {console.log(adminData[0])} */}
 
           <p className="mt-4 font-semibold" key={adminData[0]._id}>
             {adminData[0].name !== "" ? adminData[0].name : "Admin Name"}{" "}
@@ -82,7 +81,7 @@ const Profile = ({ adminData }) => {
           </label>
 
           <p className="ml-2 mt-4">{avatar ? avatar.name : "No file chosen"}</p>
-        </div>
+        </div> */}
 
         {/* Right section */}
         <div className="w-3/5  bg-white h-2/3 text-black-200 p-4  shadow border border-blue-400 rounded-md">

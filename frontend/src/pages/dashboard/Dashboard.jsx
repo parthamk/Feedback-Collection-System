@@ -51,7 +51,7 @@ const Dashboard = () => {
       <div className="w-1/5 bg-white-100 text-black-200 p-4 h-full flex flex-col justify-between">
         <div className="flex items-center  mb-4">
           <img
-            src="https://w7.pngwing.com/pngs/177/551/png-transparent-user-interface-design-computer-icons-default-stephen-salazar-graphy-user-interface-design-computer-wallpaper-sphere-thumbnail.png"
+            src="favicon.svg"
             alt="Admin"
             className="rounded-full h-16 w-16"
           />

@@ -16,21 +16,30 @@ const FeedbackForm = () => {
     rating: 0,
     reason: "",
   });
-  console.log(fromData);
+  // console.log(fromData);
 
-  const handleNextStep = () => {
-    if (step == 1 && (!fromData.name || !fromData.email)) {
-      toast.error("All fields are Mandatory");
-      return;
-    }
-    if (step == 1 && !fromData.email.includes("@")) {
-      toast.error("Please enter a valid email");
-      return;
-    }
+  const handleNextStep = async () => {
+    const response = await axios.get(
+      "https://feedback-collection-system.onrender.com/api/forms"
+    );
+    // console.log("Form response", response);
 
-    if (step == 2 && fromData.rating == 0) {
-      toast.error("Please give the rating");
-      return;
+    if (step == 1) {
+      const emailExists = response.data.forms.some(form => form.email === fromData.email);
+      if (emailExists) {
+        console.log("Email exists");
+        toast.error("You have already submitted feedback with this email.");
+        return;
+      }
+  
+      if (!fromData.name || !fromData.email) {
+        toast.error("All fields are Mandatory");
+        return;
+      }
+      if (!fromData.email.includes("@")) {
+        toast.error("Please enter a valid email");
+        return;
+      }
     }
 
     setStep(step + 1);
@@ -85,7 +94,7 @@ const FeedbackForm = () => {
 
   const handleChange = (identifier, value) => {
     setFromData({ ...fromData, [identifier]: value });
-    console.log("Reason", fromData);
+    // console.log("Reason", fromData);
   };
 
   let content;
